@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?android:attr/buttonBarStyle"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:divider="@android:drawable/divider_horizontal_bright"
+    android:dividerPadding="8dip"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context="com.termux.styling.TermuxStyleActivity" >
+
+    <Button
+        android:id="@+id/color_spinner"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/color_prompt" />
+
+    <Button
+        android:id="@+id/font_spinner"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/font_prompt" />
+
+</LinearLayout>

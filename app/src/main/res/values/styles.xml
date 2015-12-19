@@ -1,0 +1,8 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.Dialog.NoActionBar.MinWidth">
+		<item name="android:gravity">bottom</item>
+        <item name="android:colorAccent">#212121</item>
+    </style>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Termux:Styling</string>
+    <string name="color_prompt">Choose color</string>
+    <string name="font_prompt">Choose font</string>
+</resources>
