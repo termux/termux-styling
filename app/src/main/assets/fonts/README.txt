@@ -47,9 +47,15 @@ Version: 1.203
 Original file name: Courier Prime.ttf
 
 * Fira.ttf
-Site: https://github.com/mozilla/Fira 
+Site: https://github.com/mozilla/Fira
 Download: https://github.com/powerline/fonts/blob/master/FiraMono/FuraMono-Regular%20Powerline.otf
 Original file name: FuraMono-Regular Powerline.otf
+
+* FiraCode.ttf
+Site: https://github.com/tonsky/FiraCode
+Download: https://github.com/tonsky/FiraCode/raw/master/FiraCode-Regular.otf
+Date downloaded: 2015-12-23
+Original file name: FiraCode-Regular.otf
 
 * OpenDyslexic.ttf
 Site: http://opendyslexic.org/
