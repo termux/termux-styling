@@ -66,3 +66,8 @@ Original file name: OpenDyslexicMono-Regular.ttf
 Site: http://sourcefoundry.org/hack/
 Download: https://github.com/chrissimpkins/Hack/releases/download/v2.018/Hack-v2_018-ttf.zip
 Original file name: Hack-Regular.ttf
+
+* LibrationMono.ttf
+Site: https://fedorahosted.org/liberation-fonts/
+Download: https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-ttf-2.00.1.tar.gz
+Original file name: LiberationMono-Regular.ttf
