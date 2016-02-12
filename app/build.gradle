@@ -8,8 +8,8 @@ android {
         applicationId "com.termux.styling"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 9
-        versionName "0.9"
+        versionCode 10
+        versionName "0.10"
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
             targetCompatibility JavaVersion.VERSION_1_7
