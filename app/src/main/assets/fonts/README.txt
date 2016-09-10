@@ -7,7 +7,8 @@ Original file name: Anonymice Powerline.ttf
 * DejaVu.ttf
 Site: http://dejavu-fonts.org/wiki/Main_Page
 Download: http://dejavu-fonts.org/wiki/Download
-Version: 2.35
+Version: 2.37
+Original file name: DejaVuSansMono.ttf
 
 * Ubuntu.ttf
 Site: http://font.ubuntu.com/
