@@ -53,8 +53,8 @@ Original file name: FuraMono-Regular Powerline.otf
 
 * FiraCode.ttf
 Site: https://github.com/tonsky/FiraCode
-Download: https://github.com/tonsky/FiraCode/raw/master/FiraCode-Regular.otf
-Date downloaded: 2015-12-23
+Download: https://github.com/tonsky/FiraCode/raw/1.201/distr/otf/FiraCode-Regular.otf
+Version: 1.201
 Original file name: FiraCode-Regular.otf
 
 * OpenDyslexic.ttf
