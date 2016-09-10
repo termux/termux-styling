@@ -29,23 +29,30 @@ FONTPATCHER=$FONTPATCHER_DIR/scripts/powerline-fontpatcher
 # Setup Anonymous-Pro.ttf - http://www.marksimonson.com/fonts/view/anonymous-pro
 cd $TMPDIR
 curl -L -O http://www.marksimonson.com/assets/content/fonts/AnonymousProMinus-1.003.zip
-unzip AnonymousProMinus-1.003.zip
+unzip -o -q AnonymousProMinus-1.003.zip
 $FONTPATCHER "AnonymousProMinus-1.003/Anonymous Pro Minus.ttf"
 mv "Anonymous Pro Minus for Powerline.ttf" $FONTDIR/Anonymous-Pro.ttf
 
 # Setup Courier-Prime.ttf - http://quoteunquoteapps.com/courierprime
 cd $TMPDIR
 curl -L -O http://quoteunquoteapps.com/downloads/courier-prime.zip
-unzip courier-prime.zip
+unzip -o -q courier-prime.zip
 $FONTPATCHER "Courier Prime/Courier Prime.ttf"
 mv "CourierPrime for Powerline.ttf" $FONTDIR/Courier-Prime.ttf
 
 # Setup DejaVu.ttf - http://dejavu-fonts.org/wiki/Main_Page
 cd $TMPDIR
 curl -L -O http://downloads.sourceforge.net/project/dejavu/dejavu/2.37/dejavu-fonts-ttf-2.37.zip
-unzip -q dejavu-fonts-ttf-2.37.zip
+unzip -o -q dejavu-fonts-ttf-2.37.zip
 $FONTPATCHER dejavu-fonts-ttf-2.37/ttf/DejaVuSansMono.ttf
 mv "DejaVu Sans Mono for Powerline.ttf" $FONTDIR/DejaVu.ttf
+
+# Setup Fantasque.ttf - https://github.com/belluzj/fantasque-sans
+cd $TMPDIR
+curl -L -O https://github.com/belluzj/fantasque-sans/releases/download/v1.7.1/FantasqueSansMono.zip
+unzip -o -q FantasqueSansMono.zip
+# Powerline glyphs already integrated in this font.
+mv FantasqueSansMono-Regular.ttf $FONTDIR/Fantasque.ttf
 
 # Setup Fira.ttf - https://github.com/mozilla/Fira
 cd $TMPDIR
@@ -101,13 +108,13 @@ mv "OpenDyslexicMono Regular for Powerline.otf" $FONTDIR/OpenDyslexic.ttf
 cd $TMPDIR
 UBUNTU_VERSION=0.83
 curl -L -O http://font.ubuntu.com/download/ubuntu-font-family-${UBUNTU_VERSION}.zip
-unzip -q ubuntu-font-family-${UBUNTU_VERSION}.zip
+unzip -o -q ubuntu-font-family-${UBUNTU_VERSION}.zip
 $FONTPATCHER ubuntu-font-family-${UBUNTU_VERSION}/UbuntuMono-R.ttf
 mv "Ubuntu Mono for Powerline.ttf" $FONTDIR/Ubuntu.ttf
 
 # Setup Source-Code-Pro.ttf - https://github.com/adobe-fonts/source-code-pro
 cd $TMPDIR
 curl -L -O https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
-unzip -q 1.050R-it.zip
+unzip -o -q 1.050R-it.zip
 # Powerline glyphs already integrated in this font.
 cp source-code-pro-2.030R-ro-1.050R-it/OTF/SourceCodePro-Regular.otf $FONTDIR/Source-Code-Pro.ttf
