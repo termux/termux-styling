@@ -62,7 +62,7 @@ mv "Fira Mono Regular for Powerline.otf" $FONTDIR/Fira.ttf
 
 # Setup FiraCode.ttf - https://github.com/tonsky/FiraCode
 # Powerline glyphs already integrated in this font.
-curl -L -o $FONTDIR/FiraCode.ttf https://github.com/tonsky/FiraCode/raw/1.201/distr/otf/FiraCode-Regular.otf
+curl -L -o $FONTDIR/FiraCode.ttf https://github.com/tonsky/FiraCode/raw/1.204/distr/otf/FiraCode-Regular.otf
 
 # Setup GNU-FreeFont.ttf - https://www.gnu.org/software/freefont/
 cd $TMPDIR
