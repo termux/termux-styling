@@ -26,6 +26,28 @@ else
 fi
 FONTPATCHER=$FONTPATCHER_DIR/scripts/powerline-fontpatcher
 
+# Setup Roboto.ttf - https://github.com/google/fonts/tree/master/apache/robotomono
+cd $TMPDIR
+# Powerline patching does not work for this font - grab an already patched font file.
+curl -L -o $FONTDIR/Roboto.ttf https://github.com/powerline/fonts/raw/master/RobotoMono/Roboto%20Mono%20for%20Powerline.ttf
+# curl -L -O https://github.com/google/fonts/raw/master/apache/robotomono/RobotoMono-Regular.ttf
+# $FONTPATCHER RobotoMono-Regular.ttf
+# mv "RobotoMono Regular for Powerline.ttf" $FONTDIR/Roboto.ttf
+
+# Setup Meslo.ttf - https://github.com/andreberg/Meslo-Font
+cd $TMPDIR
+curl -L -O https://github.com/andreberg/Meslo-Font/raw/master/dist/v1.2.1/Meslo%20LG%20v1.2.1.zip
+unzip -q Meslo%20LG%20v1.2.1.zip
+$FONTPATCHER "Meslo LG v1.2.1/MesloLGL-Regular.ttf"
+mv "Meslo LG L Regular for Powerline.ttf" $FONTDIR/Meslo.ttf
+
+# Setup Go-Mono.ttf - https://go.googlesource.com/image/+/master/font/gofont/ttfs
+cd $TMPDIR
+curl -L -O https://go.googlesource.com/image/+archive/master/font/gofont/ttfs.tar.gz
+tar xf ttfs.tar.gz
+$FONTPATCHER Go-Mono.ttf
+mv "Go Mono for Powerline.ttf" $FONTDIR/Go.ttf
+
 # Setup Anonymous-Pro.ttf - http://www.marksimonson.com/fonts/view/anonymous-pro
 cd $TMPDIR
 curl -L -O http://www.marksimonson.com/assets/content/fonts/AnonymousProMinus-1.003.zip
@@ -83,8 +105,7 @@ tar xf otf-hermit-1.21.tar.gz
 cp Hermit-medium.otf $FONTDIR/Hermit.ttf
 
 # Setup Inconsolata.ttf - http://levien.com/type/myfonts/inconsolata.html
-# Powerline patching does not work for this font - grab an already patched
-# font file.
+# Powerline patching does not work for this font - grab an already patched font file.
 curl -L -o $FONTDIR/Inconsolata.ttf https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
 # cd $TMPDIR
 # curl -L -O http://www.levien.com/type/myfonts/Inconsolata.otf
