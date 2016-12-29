@@ -2,7 +2,7 @@ Termux:Styling
 --------------
 [![Join the chat at https://gitter.im/termux/termux](https://badges.gitter.im/termux/termux.svg)](https://gitter.im/termux/termux)
 
-[Termux](https://termux.com/) add-on to customize the terminal font and color theme.
+A [Termux](https://termux.com/) add-on to customize the terminal font and color theme.
 
 - [Termux:Styling on Google Play](https://play.google.com/store/apps/details?id=com.termux.styling)
 
