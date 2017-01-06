@@ -8,8 +8,8 @@ android {
         applicationId "com.termux.styling"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 15
-        versionName "0.15"
+        versionCode 16
+        versionName "0.16"
     }
 
     buildTypes {
