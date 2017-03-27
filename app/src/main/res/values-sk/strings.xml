@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Termux:Štýl</string>
+    <string name="color_prompt">Vyberte farbu</string>
+    <string name="font_prompt">Vyberte písmo</string>
+    <string name="writing_failed">Nepodarilo sa nainštalovať súbor:\n\n</string>
+</resources>
