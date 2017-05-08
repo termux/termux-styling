@@ -119,6 +119,13 @@ tar xf liberation-fonts-ttf-2.00.1.tar.gz
 $FONTPATCHER liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf
 mv "Liberation Mono for Powerline.ttf" $FONTDIR/LibrationMono.ttf
 
+# Setup Monofur.ttf - 
+cd $TMPDIR
+curl -L -O http://eurofurence.net/monof_tt.zip
+unzip -q monof_tt.zip
+$FONTPATCHER monof55.ttf
+cp "monofur for Powerline.ttf" $FONTDIR/Monofur.ttf
+
 # Setup Monoid.ttf - https://github.com/larsenwork/monoid/
 cd $TMPDIR
 curl -L -O https://cdn.rawgit.com/larsenwork/monoid/2db2d289f4e61010dd3f44e09918d9bb32fb96fd/Monoid.zip
