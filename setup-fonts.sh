@@ -112,12 +112,19 @@ curl -L -o $FONTDIR/Inconsolata.ttf https://github.com/powerline/fonts/raw/maste
 # $FONTPATCHER Inconsolata.otf
 # mv "Inconsolata for Powerline.otf" $FONTDIR/Inconsolata.ttf
 
-# Setup LiberationMono.ttf - https://fedorahosted.org/liberation-fonts/
+# Setup LiberationMono.ttf - https://pagure.io/liberation-fonts
 cd $TMPDIR
-curl -L -O https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-ttf-2.00.1.tar.gz
+curl -L -O https://releases.pagure.org/liberation-fonts/liberation-fonts-ttf-2.00.1.tar.gz
 tar xf liberation-fonts-ttf-2.00.1.tar.gz
 $FONTPATCHER liberation-fonts-ttf-2.00.1/LiberationMono-Regular.ttf
 mv "Liberation Mono for Powerline.ttf" $FONTDIR/LibrationMono.ttf
+
+# Setup Monoid.ttf - https://github.com/larsenwork/monoid/
+cd $TMPDIR
+curl -L -O https://cdn.rawgit.com/larsenwork/monoid/2db2d289f4e61010dd3f44e09918d9bb32fb96fd/Monoid.zip
+unzip -q Monoid.zip
+# Powerline glyphs already integrated in this font.
+cp Monoid-Regular.ttf $FONTDIR/Monoid.ttf
 
 # Setup OpenDyslexic.ttf - http://opendyslexic.org/
 cd $TMPDIR
