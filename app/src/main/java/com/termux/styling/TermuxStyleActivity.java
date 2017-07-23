@@ -6,13 +6,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -62,12 +68,26 @@ public class TermuxStyleActivity extends Activity {
         colorSpinner.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(colorAdapter, new DialogInterface.OnClickListener() {
+                final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(colorAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         copyFile(colorAdapter.getItem(which), true);
                     }
-                }).create().show();
+                }).create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        ListView lv = dialog.getListView();
+                        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                            @Override
+                            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                                showLicense(colorAdapter.getItem(position), true);
+                                return true;
+                            }
+                        });
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -75,12 +95,26 @@ public class TermuxStyleActivity extends Activity {
         fontSpinner.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(fontAdapter, new DialogInterface.OnClickListener() {
+                final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(fontAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         copyFile(fontAdapter.getItem(which), false);
                     }
-                }).create().show();
+                }).create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        ListView lv = dialog.getListView();
+                        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                            @Override
+                            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                                showLicense(fontAdapter.getItem(position), false);
+                                return true;
+                            }
+                        });
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -105,6 +139,31 @@ public class TermuxStyleActivity extends Activity {
 
         colorAdapter.addAll(result.first);
         fontAdapter.addAll(result.second);
+    }
+
+    void showLicense(Selectable mCurrentSelectable, boolean colors) {
+        try {
+            final String assetsFolder = colors ? "colors" : "fonts";
+            String fileName = mCurrentSelectable.fileName;
+            int dotIndex = fileName.lastIndexOf('.');
+            if (dotIndex != -1) fileName = fileName.substring(0, dotIndex);
+            fileName += ".txt";
+
+            try (InputStream in = getAssets().open(assetsFolder + "/" + fileName)) {
+                byte[] buffer = new byte[in.available()];
+                in.read(buffer);
+                final SpannableString license = new SpannableString(new String(buffer));
+                Linkify.addLinks(license, Linkify.ALL);
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(mCurrentSelectable.displayName)
+                        .setMessage(license)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .show();
+                ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            }
+        } catch (IOException e) {
+            // Ignore.
+        }
     }
 
     void copyFile(Selectable mCurrentSelectable, boolean colors) {
