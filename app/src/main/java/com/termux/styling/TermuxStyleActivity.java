@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,22 +30,37 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 
 public class TermuxStyleActivity extends Activity {
 
     private static final String DEFAULT_FILENAME = "Default";
+    protected static final int DEFAULT_FOREGROUND = Color.BLACK;
+    protected static final int DEFAULT_BACKGROUND = Color.WHITE;
+    protected static final String KEY_FOREGROUND_COLOR = "foregroundColor";
+    protected static final String KEY_BACKGROUND_COLOR = "backgroundColor";
 
     static class Selectable {
         final String displayName;
         final String fileName;
+        // default colors - for themes with no foreground/background colors
+        int foregroundColor = DEFAULT_FOREGROUND;
+        int backgroundColor = DEFAULT_BACKGROUND;
 
-        public Selectable(final String fileName) {
+        public Selectable(final String fileName, Context applicationContext, String assetType) {
             String name = fileName.replace('-', ' ');
             int dotIndex = name.lastIndexOf('.');
             if (dotIndex != -1) name = name.substring(0, dotIndex);
 
             this.displayName = capitalize(name);
             this.fileName = fileName;
+
+            if (assetType.equals("colors") && !DEFAULT_FILENAME.equals(fileName)) {
+                Map<String, Integer> values = ColorThemeParser.parseColorProproperties(applicationContext, fileName);
+                this.foregroundColor = values.get(KEY_FOREGROUND_COLOR);
+                this.backgroundColor = values.get(KEY_BACKGROUND_COLOR);
+            }
         }
 
         @Override
@@ -63,7 +80,16 @@ public class TermuxStyleActivity extends Activity {
         final Button colorSpinner = (Button) findViewById(R.id.color_spinner);
         final Button fontSpinner = (Button) findViewById(R.id.font_spinner);
 
-        final ArrayAdapter<Selectable> colorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<Selectable> colorAdapter = new ArrayAdapter<Selectable>(this, android.R.layout.simple_spinner_dropdown_item) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                Selectable selectable = this.getItem(position);
+                View view = super.getView(position, convertView, parent);
+                ((TextView)view).setTextColor(selectable.foregroundColor);
+                view.setBackgroundColor(selectable.backgroundColor);
+                return view;
+            }
+        };
 
         colorSpinner.setOnClickListener(new OnClickListener() {
             @Override
@@ -125,11 +151,11 @@ public class TermuxStyleActivity extends Activity {
             String assetsFileExtension = isColors ? ".properties" : ".ttf";
             List<Selectable> currentList = isColors ? colorList : fontList;
 
-            currentList.add(new Selectable(isColors ? DEFAULT_FILENAME : DEFAULT_FILENAME));
+            currentList.add(new Selectable(isColors ? DEFAULT_FILENAME : DEFAULT_FILENAME, getApplicationContext(), assetType));
 
             try {
                 for (String f : getAssets().list(assetType)) {
-                    if (f.endsWith(assetsFileExtension)) currentList.add(new Selectable(f));
+                    if (f.endsWith(assetsFileExtension)) currentList.add(new Selectable(f, getApplicationContext(), assetType));
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
