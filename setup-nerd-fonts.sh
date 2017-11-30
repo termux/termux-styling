@@ -4,7 +4,7 @@ set -e -u
 getNerdFont() {
 	project='ryanoasis/nerd-fonts'
 	#tag=$(curl -s https://api.github.com/repos/${project}/releases/latest | jq -r '.tag_name' | tr -d 'v' )
-	tag=1.0.0
+	tag=1.2.0
 	#url="https://raw.githubusercontent.com/${project}/${tag}/patched-fonts/${1// /%20}"
 	url="https://raw.githubusercontent.com/${project}/${tag}/patched-fonts/${2}"
 	local_file=app/src/main/assets/fonts/$1.ttf
@@ -13,7 +13,7 @@ getNerdFont() {
 
 getNerdFont \
 	Anonymous-Pro \
-	"AnonymousPro/complete/Anonymice%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf"
+	"AnonymousPro/complete/Anonymice%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont \
 	DejaVu \
@@ -29,7 +29,11 @@ getNerdFont \
 
 getNerdFont \
 	Fira \
-	"FiraMono/Regular/complete/Fura%20Mono%20Regular%20for%20Powerline%20Nerd%20Font%20Complete%20Mono.otf"
+	"FiraMono/Regular/complete/Fura%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
+
+getNerdFont \
+	Go \
+	"Go-Mono/complete/Go%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont \
 	Hack \
@@ -41,7 +45,7 @@ getNerdFont \
 
 getNerdFont \
 	Inconsolata \
-	"Inconsolata/complete/Inconsolata%20for%20Powerline%20Nerd%20Font%20Complete%20Mono.otf"
+	"Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete%20Mono.otf"
 
 getNerdFont \
 	Iosevka \
@@ -49,15 +53,15 @@ getNerdFont \
 
 getNerdFont \
 	LiberationMono \
-	"LiberationMono/complete/Literation%20Mono%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf"
+	"LiberationMono/complete/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont \
 	Meslo \
-	"Meslo/L/complete/Meslo%20LG%20L%20Regular%20for%20Powerline%20Nerd%20Font%20Complete%20Mono.otf"
+	"Meslo/L/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
 
 getNerdFont \
 	Monofur \
-	"Monofur/Regular/complete/monofur%20for%20Powerline%20Nerd%20Font%20Complete%20Mono.ttf"
+	"Monofur/Regular/complete/monofur%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont \
 	Monoid \
@@ -65,7 +69,7 @@ getNerdFont \
 
 getNerdFont \
 	Roboto \
-	"RobotoMono/complete/Roboto%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.ttf"
+	"RobotoMono/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont \
 	Source-Code-Pro \
@@ -73,4 +77,4 @@ getNerdFont \
 
 getNerdFont \
 	Ubuntu \
-	"UbuntuMono/Original/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
+	"UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
