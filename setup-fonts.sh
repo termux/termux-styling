@@ -39,9 +39,3 @@ curl -L -O https://ftp.gnu.org/gnu/freefont/freefont-otf-20120503.tar.gz
 tar xf freefont-otf-20120503.tar.gz
 $FONTPATCHER freefont-20120503/FreeMono.otf
 mv "FreeMono for Powerline.otf" $FONTDIR/GNU-FreeFont.ttf
-
-# Setup OpenDyslexic.ttf - http://opendyslexic.org/
-cd $TMPDIR
-curl -L -O https://github.com/antijingoist/open-dyslexic/raw/20160623-Stable/otf/OpenDyslexicMono-Regular.otf
-$FONTPATCHER OpenDyslexicMono-Regular.otf
-mv "OpenDyslexicMono Regular for Powerline.otf" $FONTDIR/OpenDyslexic.ttf
