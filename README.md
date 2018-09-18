@@ -5,13 +5,13 @@ Termux:Styling
 A [Termux](https://termux.com/) add-on app to customize the terminal font and color theme.
 
 - [Termux:Styling on Google Play](https://play.google.com/store/apps/details?id=com.termux.styling)
-- [Termux:Styling on F-Droid](https://f-droid.org/repository/browse/?fdid=com.termux.styling)
+- [Termux:Styling on F-Droid](https://f-droid.org/packages/com.termux.styling)
 
 When developing (or packaging), note that this app needs to be signed with the same key as the main Termux app in order to have the permission to modify the required font or color files.
 
 License
 =======
-Released under the [GPLv3 license](http://www.gnu.org/licenses/gpl-3.0.en.html).
+Released under the [GPLv3 license](https://www.gnu.org/licenses/gpl-3.0.html).
 
 How to use
 ==========

@@ -3,7 +3,6 @@ package com.termux.styling;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -11,10 +10,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.util.Pair;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -60,62 +56,36 @@ public class TermuxStyleActivity extends Activity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         setContentView(R.layout.layout);
 
-        final Button colorSpinner = (Button) findViewById(R.id.color_spinner);
-        final Button fontSpinner = (Button) findViewById(R.id.font_spinner);
+        final Button colorSpinner = findViewById(R.id.color_spinner);
+        final Button fontSpinner = findViewById(R.id.font_spinner);
 
         final ArrayAdapter<Selectable> colorAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
 
-        colorSpinner.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(colorAdapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        copyFile(colorAdapter.getItem(which), true);
-                    }
-                }).create();
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        ListView lv = dialog.getListView();
-                        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                            @Override
-                            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                                showLicense(colorAdapter.getItem(position), true);
-                                return true;
-                            }
-                        });
-                    }
+        colorSpinner.setOnClickListener(v -> {
+            final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this)
+                    .setAdapter(colorAdapter, (dialog12, which) -> copyFile(colorAdapter.getItem(which), true)).create();
+            dialog.setOnShowListener(dialogInterface -> {
+                ListView lv = dialog.getListView();
+                lv.setOnItemLongClickListener((adapterView, view, position, id) -> {
+                    showLicense(colorAdapter.getItem(position), true);
+                    return true;
                 });
-                dialog.show();
-            }
+            });
+            dialog.show();
         });
 
         final ArrayAdapter<Selectable> fontAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item);
-        fontSpinner.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this).setAdapter(fontAdapter, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        copyFile(fontAdapter.getItem(which), false);
-                    }
-                }).create();
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        ListView lv = dialog.getListView();
-                        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                            @Override
-                            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                                showLicense(fontAdapter.getItem(position), false);
-                                return true;
-                            }
-                        });
-                    }
+        fontSpinner.setOnClickListener(v -> {
+            final AlertDialog dialog = new AlertDialog.Builder(TermuxStyleActivity.this)
+                    .setAdapter(fontAdapter, (dialog1, which) -> copyFile(fontAdapter.getItem(which), false)).create();
+            dialog.setOnShowListener(dialogInterface -> {
+                ListView lv = dialog.getListView();
+                lv.setOnItemLongClickListener((adapterView, view, position, id) -> {
+                    showLicense(fontAdapter.getItem(position), false);
+                    return true;
                 });
-                dialog.show();
-            }
+            });
+            dialog.show();
         });
 
         List<Selectable> colorList = new ArrayList<>();
