@@ -2,6 +2,9 @@ plugins {
     id("com.android.application")
 }
 
+val versionCode = 24
+val versionName = "0.$versionCode"
+
 android {
     compileSdkVersion(28)
 
@@ -9,8 +12,8 @@ android {
         applicationId = "com.termux.styling"
         minSdkVersion(21)
         targetSdkVersion(28)
-        versionCode = 24
-        versionName = "0.24"
+        this.versionCode = versionCode
+        this.versionName = versionName
     }
 
     buildTypes {
@@ -25,4 +28,8 @@ android {
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
     }
+}
+
+tasks.create("versionName") {
+    doLast { println(versionName) }
 }
