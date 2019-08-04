@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("kotlin-android")
 }
 
 val versionCode = 24
@@ -17,8 +18,9 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+        getByName("debug") {
+            isShrinkResources = true
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.txt")
         }
     }
@@ -28,6 +30,10 @@ android {
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
     }
+}
+
+dependencies {
+    implementation(embeddedKotlin("stdlib-jdk8"))
 }
 
 tasks.create("versionName") {
