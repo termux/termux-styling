@@ -1,0 +1,5 @@
+D2Coding fixed-width Korean font.
+
+Current version used is D2Coding-Ver1.3.2-20180524-ligature.ttf.
+
+https://github.com/naver/d2codingfont
