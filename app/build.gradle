@@ -1,0 +1,28 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 28
+
+     defaultConfig {
+        applicationId "com.termux.styling"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 25
+        versionName "0.25"
+    }
+
+     buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
