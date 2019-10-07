@@ -26,13 +26,13 @@ Signature keys of all offered builds are different. Before you switch the
 installation source, you will have to uninstall the Termux application and
 all currently installed plugins.
 
-## License
-
-Released under the [GPLv3 license](http://www.gnu.org/licenses/gpl-3.0.en.html).
-
 ## How to use
 
 1. When inside Termux, long press anywhere on the terminal.
 2. Select `More...` in the resulting dialog.
 3. Select `Style` in the next dialog.
 4. Click either `CHOOSE COLOR` or `CHOOSE FONT` depending on what you want to customize.
+
+## License
+
+Released under the [GPLv3 license](http://www.gnu.org/licenses/gpl-3.0.en.html).
