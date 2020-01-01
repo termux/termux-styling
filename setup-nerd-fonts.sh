@@ -61,5 +61,8 @@ getNerdFont Roboto \
 getNerdFont Source-Code-Pro \
 	"SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf"
 
+getNerdFont Terminus \
+	"Terminus/terminus-ttf-4.40.1/Regular/complete/Terminess%20(TTF)%20Nerd%20Font%20Complete%20Mono.ttf"
+
 getNerdFont Ubuntu \
 	"UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
