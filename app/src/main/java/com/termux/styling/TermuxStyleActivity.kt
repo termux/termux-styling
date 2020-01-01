@@ -149,14 +149,20 @@ class TermuxStyleActivity : Activity() {
             val context = createPackageContext("com.termux", Context.CONTEXT_IGNORE_SECURITY)
             val homeDir = File(context.filesDir, "home")
             val termuxDir = File(homeDir, ".termux")
-            val destinationFile = File(termuxDir, outputFile)
+
             if (!(termuxDir.isDirectory || termuxDir.mkdirs()))
                 throw RuntimeException("Cannot create termux dir=" + termuxDir.absolutePath)
 
+            val destinationFile = File(termuxDir, outputFile).canonicalFile
+
             // Fix for if the user has messed up with chmod:
-            destinationFile.setWritable(true)
             destinationFile.parentFile.setWritable(true)
             destinationFile.parentFile.setExecutable(true)
+
+            if (destinationFile.exists()) {
+                destinationFile.setWritable(true)
+                destinationFile.delete()
+            }
 
             val defaultChoice = mCurrentSelectable!!.fileName == DEFAULT_FILENAME
             // Write to existing file to keep symlink if this is used.
