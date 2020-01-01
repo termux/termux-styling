@@ -3,9 +3,8 @@ set -e -u
 
 getNerdFont() {
 	project='ryanoasis/nerd-fonts'
-	#tag=$(curl -s https://api.github.com/repos/${project}/releases/latest | jq -r '.tag_name' | tr -d 'v' )
-	tag=2.0.0
-	url="https://raw.githubusercontent.com/${project}/${tag}/patched-fonts/${2}"
+	commit=3f50100fcb319744a3d339488f0b32407defb6ba
+	url="https://github.com/$project/raw/$commit/patched-fonts/${2}"
 	local_file=app/src/main/assets/fonts/$1.ttf
 	echo "Fetching $url ..."
 	curl -fLo "${local_file}" "${url}"
@@ -45,7 +44,7 @@ getNerdFont LiberationMono \
 	"LiberationMono/complete/Literation%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont Meslo \
-	"Meslo/L/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
+	"Meslo/L/Regular/complete/Meslo%20LG%20L%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont Monofur \
 	"Monofur/Regular/complete/monofur%20Nerd%20Font%20Complete%20Mono.ttf"

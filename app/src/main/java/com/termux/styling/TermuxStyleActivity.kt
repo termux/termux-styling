@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
 import android.text.util.Linkify
+import android.util.AtomicFile
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -149,31 +150,32 @@ class TermuxStyleActivity : Activity() {
             val context = createPackageContext("com.termux", Context.CONTEXT_IGNORE_SECURITY)
             val homeDir = File(context.filesDir, "home")
             val termuxDir = File(homeDir, ".termux")
-            val destinationFile = File(termuxDir, outputFile)
             if (!(termuxDir.isDirectory || termuxDir.mkdirs()))
                 throw RuntimeException("Cannot create termux dir=" + termuxDir.absolutePath)
 
+            // Use canonicalFile to follow a possible symlink:
+            val destinationFile = File(termuxDir, outputFile).canonicalFile
             // Fix for if the user has messed up with chmod:
             destinationFile.setWritable(true)
             destinationFile.parentFile.setWritable(true)
             destinationFile.parentFile.setExecutable(true)
 
             val defaultChoice = mCurrentSelectable!!.fileName == DEFAULT_FILENAME
-            // Write to existing file to keep symlink if this is used.
-            FileOutputStream(destinationFile).use { out ->
-                if (defaultChoice) {
-                    if (colors) {
-                        val comment = "# Using default color theme.".toByteArray(StandardCharsets.UTF_8)
-                        out.write(comment)
-                    } else {
-                        // Just leave an empty font file as a marker.
-                    }
+            val atomicFile = AtomicFile(destinationFile)
+            val out = atomicFile.startWrite()
+            if (defaultChoice) {
+                if (colors) {
+                    val comment = "# Using default color theme.".toByteArray(StandardCharsets.UTF_8)
+                    out.write(comment)
                 } else {
-                    assets.open(assetsFolder + "/" + mCurrentSelectable.fileName).use {
-                        it.copyTo(out)
-                    }
+                    // Just leave an empty font file as a marker.
+                }
+            } else {
+                assets.open(assetsFolder + "/" + mCurrentSelectable.fileName).use {
+                    it.copyTo(out)
                 }
             }
+            atomicFile.finishWrite(out)
 
             // Note: Must match constant in Term#onCreate():
             val ACTION_RELOAD = "com.termux.app.reload_style"
