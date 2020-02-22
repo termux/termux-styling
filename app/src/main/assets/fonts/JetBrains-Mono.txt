@@ -1,7 +1,7 @@
-JetBrains Mono - A typeface for developers. 
+JetBrains Mono - A typeface for developers.
 
 https://www.jetbrains.com/lp/mono/
 
-The version used here is 1.0.2 from:
+The version used here is JetBrainsMono-Regular.ttf from:
 
-https://github.com/JetBrains/JetBrainsMono/releases/tag/v1.0.2
+https://github.com/JetBrains/JetBrainsMono/releases/tag/v1.0.3
