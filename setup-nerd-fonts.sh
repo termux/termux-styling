@@ -2,9 +2,8 @@
 set -e -u
 
 getNerdFont() {
-	project='ryanoasis/nerd-fonts'
-	commit=36d0708dc29c5cf469522e7c7431642dfbfdbeeb
-	url="https://github.com/$project/raw/$commit/patched-fonts/${2}"
+	commit=5f748cdb104a241ec8ac229f24518f3f867e8eb2
+	url="https://github.com/ryanoasis/nerd-fonts/raw/$commit/patched-fonts/${2}"
 	local_file=app/src/main/assets/fonts/$1.ttf
 	echo "Fetching $url ..."
 	curl -fLo "${local_file}" "${url}"
@@ -66,3 +65,6 @@ getNerdFont Terminus \
 
 getNerdFont Ubuntu \
 	"UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
+
+getNerdFont VictorMono \
+	"VictorMono/Regular/complete/Victor%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
