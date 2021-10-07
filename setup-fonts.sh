@@ -40,3 +40,9 @@ curl -L -O https://ftp.gnu.org/gnu/freefont/freefont-otf-20120503.tar.gz
 tar xf freefont-otf-20120503.tar.gz
 $FONTPATCHER freefont-20120503/FreeMono.otf
 mv "FreeMono for Powerline.otf" $FONTDIR/GNU-FreeFont.ttf
+
+# Setup Bedstead-Condensed.ttf - http://bjh21.me.uk/bedstead/
+cd $TMPDIR
+curl -L -O bjh21.me.uk/bedstead/bedstead-condensed.otf
+$FONTPATCHER bedstead-condensed.otf
+mv "Bedstead Condensed for Powerline.otf" $FONTDIR/Bedstead-Condensed.ttf
