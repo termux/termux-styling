@@ -22,7 +22,7 @@ else
 	mkdir -p $HOME/src
 	git clone https://github.com/powerline/fontpatcher.git $FONTPATCHER_DIR
 	cd $FONTPATCHER_DIR
-	patch -Np1 -i $TOPDIR/fontpatcher-py3.patch
+	git am $TOPDIR/fontpatcher-py3.patch
 	./setup.py build
 fi
 FONTPATCHER=$FONTPATCHER_DIR/scripts/powerline-fontpatcher

@@ -1,3 +1,12 @@
+From e10eac89d8677839b28089b0d4965192f9a55e04 Mon Sep 17 00:00:00 2001
+From: Henrik Grimler <grimler@termux.org>
+Date: Mon, 16 May 2022 10:02:11 +0000
+Subject: [PATCH] powerline-fontpatcher: use python3 instead of python2
+
+---
+ scripts/powerline-fontpatcher | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/scripts/powerline-fontpatcher b/scripts/powerline-fontpatcher
 index 8a5567b..372fb7c 100755
 --- a/scripts/powerline-fontpatcher
@@ -8,3 +17,6 @@ index 8a5567b..372fb7c 100755
  # vim:fileencoding=utf-8:noet
  
  import argparse
+-- 
+2.32.0
+
