@@ -2,7 +2,7 @@
 set -e -u
 
 getNerdFont() {
-	commit=5f748cdb104a241ec8ac229f24518f3f867e8eb2
+	commit=fef67f39a69314637ae0923dfdd94b3bb0638bd8
 	url="https://github.com/ryanoasis/nerd-fonts/raw/$commit/patched-fonts/${2}"
 	local_file=app/src/main/assets/fonts/$1.ttf
 	echo "Fetching $url ..."
@@ -19,10 +19,10 @@ getNerdFont Fantasque \
 	"FantasqueSansMono/Regular/complete/Fantasque%20Sans%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont FiraCode \
-	"FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
+	"FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont Fira \
-	"FiraMono/Regular/complete/Fira%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
+	"FiraMono/Regular/complete/Fura%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
 
 getNerdFont Go \
 	"Go-Mono/Regular/complete/Go%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
