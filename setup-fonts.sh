@@ -12,7 +12,7 @@ mkdir -p $TMPDIR
 
 # Install python fontforge bindings for use by powerline font patcher:
 if [ $(dpkg-query -W -f='${Status}' python-fontforge 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-	sudo apt install python-fontforge
+	sudo apt install python3-fontforge
 fi
 
 FONTPATCHER_DIR=$HOME/src/fontpatcher
@@ -22,6 +22,7 @@ else
 	mkdir -p $HOME/src
 	git clone https://github.com/powerline/fontpatcher.git $FONTPATCHER_DIR
 	cd $FONTPATCHER_DIR
+	patch -Np1 -i $TOPDIR/fontpatcher-py3.patch
 	./setup.py build
 fi
 FONTPATCHER=$FONTPATCHER_DIR/scripts/powerline-fontpatcher
