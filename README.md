@@ -29,7 +29,3 @@ all currently installed plugins.
 2. Select `More...` in the resulting dialog.
 3. Select `Style` in the next dialog.
 4. Click either `CHOOSE COLOR` or `CHOOSE FONT` depending on what you want to customize.
-
-## License
-
-Released under the [GPLv3 license](http://www.gnu.org/licenses/gpl-3.0.en.html).
