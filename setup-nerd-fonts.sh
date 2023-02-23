@@ -52,7 +52,7 @@ getNerdFont Monoid \
 	"Monoid/Regular/complete/Monoid%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont OpenDyslexic \
-	"OpenDyslexic/Regular/complete/OpenDyslexic%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
+	"OpenDyslexic/Mono-Regular/complete/OpenDyslexicMono%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
 
 getNerdFont Roboto \
 	"RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
