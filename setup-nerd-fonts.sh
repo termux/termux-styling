@@ -2,7 +2,7 @@
 set -e -u
 
 getNerdFont() {
-	commit=fef67f39a69314637ae0923dfdd94b3bb0638bd8
+	commit=12a523c32d55bdde88074e5b09e2b2e1eb9b5342
 	url="https://github.com/ryanoasis/nerd-fonts/raw/$commit/patched-fonts/${2}"
 	local_file=app/src/main/assets/fonts/$1.ttf
 	echo "Fetching $url ..."
@@ -34,7 +34,7 @@ getNerdFont Hermit \
 	"Hermit/Medium/complete/Hurmit%20Medium%20Nerd%20Font%20Complete%20Mono.otf"
 
 getNerdFont Inconsolata \
-	"Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete%20Mono.otf"
+	"InconsolataLGC/Regular/complete/Inconsolata%20LGC%20Nerd%20Font%20Complete%20Mono.ttf"
 
 getNerdFont Iosevka \
 	"Iosevka/Regular/complete/Iosevka%20Nerd%20Font%20Complete%20Mono.ttf"
