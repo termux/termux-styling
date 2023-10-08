@@ -156,8 +156,8 @@ class TermuxStyleActivity : Activity() {
             val destinationFile = File(termuxDir, outputFile).canonicalFile
             // Fix for if the user has messed up with chmod:
             destinationFile.setWritable(true)
-            destinationFile.parentFile.setWritable(true)
-            destinationFile.parentFile.setExecutable(true)
+            destinationFile.parentFile?.setWritable(true)
+            destinationFile.parentFile?.setExecutable(true)
 
             val defaultChoice = mCurrentSelectable!!.fileName == DEFAULT_FILENAME
             val atomicFile = AtomicFile(destinationFile)
