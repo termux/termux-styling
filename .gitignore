@@ -31,4 +31,8 @@ local.properties
 ehthumbs.db
 Thumbs.db
 
+# Vim files
+*.swo
+*.swp
+
 /tmp/
