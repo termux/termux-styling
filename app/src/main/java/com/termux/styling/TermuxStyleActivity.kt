@@ -17,7 +17,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.*
@@ -178,9 +177,9 @@ class TermuxStyleActivity : Activity() {
             atomicFile.finishWrite(out)
 
             // Note: Must match constant in Term#onCreate():
-            val ACTION_RELOAD = "com.termux.app.reload_style"
-            val executeIntent = Intent(ACTION_RELOAD)
-            executeIntent.putExtra(ACTION_RELOAD, if (colors) "colors" else "font")
+            val actionReload = "com.termux.app.reload_style"
+            val executeIntent = Intent(actionReload)
+            executeIntent.putExtra(actionReload, if (colors) "colors" else "font")
             sendBroadcast(executeIntent)
         } catch (e: Exception) {
             Log.w("termux", "Failed to write $outputFile", e)

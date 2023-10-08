@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace "com.termux.styling"
-    compileSdkVersion 34
 
      defaultConfig {
         applicationId "com.termux.styling"
         minSdkVersion 21
         targetSdkVersion 28
+        compileSdk 34
         versionCode 30
         versionName "0.30"
     }
@@ -51,8 +51,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
-task versionName {
-  doLast {
-    print android.defaultConfig.versionName
-  }
+tasks.register("versionName") {
+    doLast {
+        print android.defaultConfig.versionName
+    }
 }
