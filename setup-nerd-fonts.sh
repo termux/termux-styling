@@ -5,41 +5,47 @@ getNerdFont() {
 	local font_name="${1}"
 	local font_file="${2}"
 
-	local tag="v3.0.2"
-	local font_filename_remote="$font_name"
-	if [ "$font_filename_remote" != "Go-Mono" ]; then
-	  font_filename_remote="${font_filename_remote//-/}"
-    echo "font_name=$font_name, font_filename_remote=$font_filename_remote"
-	fi
-	local url="https://github.com/ryanoasis/nerd-fonts/raw/${tag}/patched-fonts/${font_filename_remote}/${font_file}"
+	local tag="v3.1.1"
+	local font_pack="${font_name}"
+	case "${font_pack}" in
+		("Go-Mono")
+			# These fonts have hyphens in the pack name.
+			;;
+		(*)
+			# The rest don't.
+			font_pack="${font_pack//-/}"
+			;;
+	esac
+	local url="https://github.com/ryanoasis/nerd-fonts/releases/download/${tag}/${font_pack}.tar.xz"
 
 	local local_file="app/src/main/assets/fonts/${font_name}.ttf"
 	# Report which font is being downloaded, and keep a running count.
 	echo "Fetching ${url} ... [$(( ++font_counter ))/${#fonts[@]}]"
-	curl -fLo "${local_file}" "${url}"
+	curl -fLs "${url}" | tar -xJO -f - "${font_file}" > "${local_file}"
+	echo -e "\t-> Saved to ${local_file}"
 }
 
 declare -A fonts=( # [font-name]='path/to/file.ttf'
-	[Anonymous-Pro]='Regular/AnonymiceProNerdFontMono-Regular.ttf'
-	[DejaVu-Sans-Mono]='Regular/DejaVuSansMNerdFontMono-Regular.ttf'
-	[Fantasque-Sans-Mono]='Regular/FantasqueSansMNerdFontMono-Regular.ttf'
-	[Fira-Code]='Regular/FiraCodeNerdFontMono-Regular.ttf'
-	[Fira-Mono]='Regular/FiraMonoNerdFontMono-Regular.otf'
-	[Go-Mono]='Regular/GoMonoNerdFontMono-Regular.ttf'
-	[Hack]='Regular/HackNerdFontMono-Regular.ttf'
-	[Hermit]='Regular/HurmitNerdFontMono-Regular.otf'
-	[Inconsolata]='InconsolataNerdFontMono-Regular.ttf'
-	[Iosevka]='Regular/IosevkaNerdFontMono-Regular.ttf'
-	[Liberation-Mono]='LiterationMonoNerdFontMono-Regular.ttf'
-	[Meslo]='L/Regular/MesloLGLNerdFontMono-Regular.ttf'
-	[Monofur]='Regular/MonofurNerdFontMono-Regular.ttf'
-	[Monoid]='Regular/MonoidNerdFontMono-Regular.ttf'
-	[OpenDyslexic]='Mono-Regular/OpenDyslexicMNerdFontMono-Regular.otf'
-	[Roboto-Mono]='Regular/RobotoMonoNerdFontMono-Regular.ttf'
-	[Source-Code-Pro]='Regular/SauceCodeProNerdFontMono-Regular.ttf'
-	[Terminus]='Regular/TerminessNerdFontMono-Regular.ttf'
-	[Ubuntu-Mono]='Regular/UbuntuMonoNerdFontMono-Regular.ttf'
-	[Victor-Mono]='Regular/VictorMonoNerdFontMono-Regular.ttf'
+	[Anonymous-Pro]='AnonymiceProNerdFont-Regular.ttf'
+	[DejaVu-Sans-Mono]='DejaVuSansMNerdFont-Regular.ttf'
+	[Fantasque-Sans-Mono]='FantasqueSansMNerdFont-Regular.ttf'
+	[Fira-Code]='FiraCodeNerdFont-Regular.ttf'
+	[Fira-Mono]='FiraMonoNerdFont-Regular.otf'
+	[Go-Mono]='GoMonoNerdFont-Regular.ttf'
+	[Hack]='HackNerdFont-Regular.ttf'
+	[Hermit]='HurmitNerdFont-Regular.otf'
+	[Inconsolata]='InconsolataNerdFont-Regular.ttf'
+	[Iosevka]='IosevkaNerdFont-Regular.ttf'
+	[Liberation-Mono]='LiterationMonoNerdFont-Regular.ttf'
+	[Meslo]='MesloLGLNerdFont-Regular.ttf'
+	[Monofur]='MonofurNerdFont-Regular.ttf'
+	[Monoid]='MonoidNerdFont-Regular.ttf'
+	[OpenDyslexic]='OpenDyslexicMNerdFont-Regular.otf'
+	[Roboto-Mono]='RobotoMonoNerdFont-Regular.ttf'
+	[Source-Code-Pro]='SauceCodeProNerdFont-Regular.ttf'
+	[Terminus]='TerminessNerdFont-Regular.ttf'
+	[Ubuntu-Mono]='UbuntuMonoNerdFont-Regular.ttf'
+	[Victor-Mono]='VictorMonoNerdFont-Regular.ttf'
 )
 
 # Starting log message
