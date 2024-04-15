@@ -6,11 +6,12 @@ plugins {
 android {
     namespace "com.termux.styling"
 
+    compileSdkVersion project.properties.compileSdkVersion.toInteger()
+
      defaultConfig {
         applicationId "com.termux.styling"
-        minSdkVersion 21
-        targetSdkVersion 28
-        compileSdk 34
+        minSdkVersion project.properties.minSdkVersion.toInteger()
+        targetSdkVersion project.properties.targetSdkVersion.toInteger()
         versionCode 31
         versionName "0.31"
     }
