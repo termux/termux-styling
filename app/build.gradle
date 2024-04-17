@@ -15,8 +15,8 @@ android {
         applicationId "com.termux.styling"
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
-        versionCode 31
-        versionName "0.31.0"
+        versionCode 32
+        versionName "0.32.0"
 
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
