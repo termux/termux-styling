@@ -54,11 +54,8 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            if (variant.buildType.name == "debug") {
-                outputFileName = new File("termux-styling_" + (apkVersionTag ? apkVersionTag : "debug") + ".apk")
-            } else if (variant.buildType.name == "release") {
-                outputFileName = new File("termux-styling_" + (apkVersionTag ? apkVersionTag : "release") + ".apk")
-            }
+            outputFileName = new File("termux-styling-app_" +
+                    (apkVersionTag ? apkVersionTag : "v" + versionName + "+" + variant.buildType.name) + ".apk")
         }
     }
 }
