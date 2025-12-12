@@ -16,7 +16,7 @@ android {
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
         versionCode 1000
-        versionName "0.32.1"
+        versionName "0.32.2"
 
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
@@ -44,12 +44,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '17'
     }
 
     applicationVariants.all { variant ->
