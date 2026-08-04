@@ -11,7 +11,18 @@ android {
     def appVersionName = System.getenv("TERMUX_STYLING_APP_BUILD__APP_VERSION_NAME") ?: ""
     def apkVersionTag = System.getenv("TERMUX_STYLING_APP_BUILD__APK_VERSION_TAG") ?: ""
 
-     defaultConfig {
+    def releaseKeystorePath = System.getenv("TERMUX_RELEASE_KEYSTORE")
+    def releaseStorePassword = System.getenv("TERMUX_RELEASE_STORE_PASSWORD")
+    def releaseKeyAlias = System.getenv("TERMUX_RELEASE_KEY_ALIAS")
+    def releaseKeyPassword = System.getenv("TERMUX_RELEASE_KEY_PASSWORD")
+
+    def releaseSigningConfigured =
+            releaseKeystorePath &&
+            releaseStorePassword &&
+            releaseKeyAlias &&
+            releaseKeyPassword
+
+    defaultConfig {
         applicationId "com.termux.styling"
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
@@ -29,13 +40,28 @@ android {
             storePassword 'xrj45yWGLbsO7W0v'
             keyPassword 'xrj45yWGLbsO7W0v'
         }
+
+        if (releaseSigningConfigured) {
+            release {
+                storeFile file(releaseKeystorePath)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
     }
 
-     buildTypes {
+    buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+
+            if (releaseSigningConfigured) {
+                signingConfig signingConfigs.release
+            } else {
+                logger.lifecycle("Release signing not configured - release APK will not be signed.")
+            }
         }
 
         debug {
@@ -54,8 +80,13 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            outputFileName = new File("termux-styling-app_" +
-                    (apkVersionTag ? apkVersionTag : "v" + versionName + "+" + variant.buildType.name) + ".apk")
+            outputFileName = new File(
+                    "termux-styling-app_" +
+                            (apkVersionTag
+                                    ? apkVersionTag
+                                    : "v" + versionName + "+" + variant.buildType.name) +
+                            ".apk"
+            )
         }
     }
 }
@@ -73,6 +104,16 @@ task versionName {
 def validateVersionName(String versionName) {
     // https://semver.org/spec/v2.0.0.html#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
     // ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
-    if (!java.util.regex.Pattern.matches("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?\$", versionName))
-        throw new GradleException("The versionName '" + versionName + "' is not a valid version as per semantic version '2.0.0' spec in the format 'major.minor.patch(-prerelease)(+buildmetadata)'. https://semver.org/spec/v2.0.0.html.")
+    if (!java.util.regex.Pattern.matches(
+            "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?\$",
+            versionName
+    )) {
+        throw new GradleException(
+                "The versionName '" +
+                        versionName +
+                        "' is not a valid version as per semantic version '2.0.0' spec in the format " +
+                        "'major.minor.patch(-prerelease)(+buildmetadata)'. " +
+                        "https://semver.org/spec/v2.0.0.html."
+        )
+    }
 }
