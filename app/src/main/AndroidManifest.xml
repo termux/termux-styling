@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".TermuxStyleActivity"
-            android:noHistory="true"
+            android:noHistory="false"
             android:exported="false" >
         </activity>
     </application>
