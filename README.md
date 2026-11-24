@@ -1,31 +1,38 @@
-# Termux:Styling
+# InVxTermux:Styling
 
-[![Build status](https://github.com/termux/termux-styling/workflows/Build/badge.svg)](https://github.com/termux/termux-styling/actions)
-[![Join the chat at https://gitter.im/termux/termux](https://badges.gitter.im/termux/termux.svg)](https://gitter.im/termux/termux)
+Unofficial fork of [termux/termux-styling](https://github.com/termux/termux-styling)
+for **[InVxTermux](https://github.com/involvex/termux-app)**
+(`com.involvex.termux_app`).
 
-A [Termux](https://termux.org) add-on app to customize the terminal font and
-color theme.
+| | Stock Termux | This fork |
+|---|---|---|
+| applicationId | `com.termux.styling` | `com.involvex.termux_app.styling` |
+| sharedUserId | `com.termux` | `com.involvex.termux_app` |
+| Reload broadcast | `com.termux.app.reload_style` | `com.involvex.termux_app.app.reload_style` |
 
-When developing (or packaging), note that this app needs to be signed with the
-same key as the main Termux app in order to have the permission to modify the
-required font or color files.
+Must be signed with the **same** key as the main InVxTermux APK (public test key
+`testkey_untrusted.jks` matches the main app’s debug/release test builds). Stock
+`com.termux.styling` from F-Droid will **not** install alongside InVxTermux.
 
-## Installation
+## Build
 
-Termux:Styling application can be obtained from [F-Droid](https://f-droid.org/en/packages/com.termux.styling/).
+```bash
+./gradlew :app:assembleDebug
+# APK under app/build/outputs/apk/debug/
+```
 
-Additionally we provide per-commit debug builds for those who want to try
-out the latest features or test their pull request. This build can be obtained
-from one of the workflow runs listed on [Github Actions](https://github.com/termux/termux-styling/actions/workflows/github_action_build.yml?query=branch%3Amaster+event%3Apush)
-page.
+Install next to InVxTermux (same signature / sharedUserId):
 
-Signature keys of all offered builds are different. Before you switch the
-installation source, you will have to uninstall the Termux application and
-all currently installed plugins. Check https://github.com/termux/termux-app#Installation for more info.
+```bash
+adb install -r app/build/outputs/apk/debug/termux-styling-app_v0.32.2+debug.apk
+```
 
 ## How to use
 
-1. When inside Termux, long press anywhere on the terminal.
-2. Select `More...` in the resulting dialog.
-3. Select `Style` in the next dialog.
-4. Click either `CHOOSE COLOR` or `CHOOSE FONT` depending on what you want to customize.
+1. Inside InVxTermux, long-press the terminal → **More…** → **Style**.
+2. Choose color or font.
+
+## Upstream
+
+Fonts/colors assets and most UI come from upstream Termux:Styling. Prefer
+sending theme/font PRs upstream when they are not fork-specific.

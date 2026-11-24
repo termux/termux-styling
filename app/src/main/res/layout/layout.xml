@@ -7,7 +7,7 @@
     android:dividerPadding="8dip"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.termux.styling.TermuxStyleActivity" >
+    tools:context="com.involvex.termux_app.styling.TermuxStyleActivity" >
 
     <Button
         android:id="@+id/color_spinner"

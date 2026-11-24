@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:sharedUserId="com.termux" >
+    android:sharedUserId="${TERMUX_PACKAGE_NAME}" >
 
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
 

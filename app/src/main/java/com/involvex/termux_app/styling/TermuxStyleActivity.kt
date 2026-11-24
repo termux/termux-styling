@@ -1,4 +1,4 @@
-package com.termux.styling
+package com.involvex.termux_app.styling
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -146,7 +146,8 @@ class TermuxStyleActivity : Activity() {
         try {
             val assetsFolder = if (colors) "colors" else "fonts"
 
-            val context = createPackageContext("com.termux", Context.CONTEXT_IGNORE_SECURITY)
+            // Must match InVxTermux sharedUserId / applicationId (not stock com.termux).
+            val context = createPackageContext("com.involvex.termux_app", Context.CONTEXT_IGNORE_SECURITY)
             val homeDir = File(context.filesDir, "home")
             val termuxDir = File(homeDir, ".termux")
             if (!(termuxDir.isDirectory || termuxDir.mkdirs()))
@@ -176,13 +177,13 @@ class TermuxStyleActivity : Activity() {
             }
             atomicFile.finishWrite(out)
 
-            // Note: Must match constant in Term#onCreate():
-            val actionReload = "com.termux.app.reload_style"
+            // Must match TermuxConstants.TERMUX_ACTIVITY.ACTION_RELOAD_STYLE
+            val actionReload = "com.involvex.termux_app.app.reload_style"
             val executeIntent = Intent(actionReload)
             executeIntent.putExtra(actionReload, if (colors) "colors" else "font")
             sendBroadcast(executeIntent)
         } catch (e: Exception) {
-            Log.w("termux", "Failed to write $outputFile", e)
+            Log.w("invx-styling", "Failed to write $outputFile", e)
             val message = resources.getString(R.string.writing_failed) + e.message
             Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         }

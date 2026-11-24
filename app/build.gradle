@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace "com.termux.styling"
+    namespace "com.involvex.termux_app.styling"
 
     compileSdk project.properties.compileSdkVersion.toInteger()
 
@@ -12,14 +12,18 @@ android {
     def apkVersionTag = System.getenv("TERMUX_STYLING_APP_BUILD__APK_VERSION_TAG") ?: ""
 
      defaultConfig {
-        applicationId "com.termux.styling"
+        // Must match InVxTermux TermuxConstants.TERMUX_STYLING_PACKAGE_NAME
+        applicationId "com.involvex.termux_app.styling"
         minSdk project.properties.minSdkVersion.toInteger()
         targetSdk project.properties.targetSdkVersion.toInteger()
-        versionCode 1000
-        versionName "0.32.1"
+        versionCode 1001
+        versionName "0.32.2"
 
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
+
+        // sharedUserId + same testkey as com.involvex.termux_app
+        manifestPlaceholders.TERMUX_PACKAGE_NAME = "com.involvex.termux_app"
     }
 
     signingConfigs {
@@ -35,6 +39,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
 
